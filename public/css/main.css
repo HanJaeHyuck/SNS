@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ul , li {
+    list-style: none;
+}
+ 
+a {
+    text-decoration: none;
+}
+
+body {
+    background-color:#939393 ;
+}
+
+.container {
+    /* position: relative; */
+    width: 1600px;
+    margin: 0 auto;
+}
+
+#view {
+    position: relative;
+    width: 100%;
+    height: 900px;
+    background-image: url(/images/main.png);
+}
+
+#view::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.4;
+}
+
+.people { position: absolute;}
+#people1 { top: 554px; left: 254px;}
+#people2 { top: 330px; left: 121px;}
+#people3 { top: 490px; left: 541px;}
+#people4 { top: 574px; left: 1284px;}
+#people5 { top: 132px; left: 1153px;}
+#people6 { top: 608px; left: 724px;}
+#people7 { top: 710px; left: 956px;}
+#people8 { top: 800px; left: 1244px;}
+#people9 { top: 480px; left: 1477px;}
+#people10 { top: 135px; left: 853px;}
+
+.login-form {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 170px;
+    left: 50%;
+    display: block;
+    border-radius: 50%;
+    margin-left: -200px;
+    background-color: #fff;
+    z-index: 99;
+}
+
+.title {
+    width: 100%;
+    height: 40px;
+    background: url(/images/title.png) no-repeat center;
+    margin-top: 80px;
+}
+
+.login-form > form > input {
+    width: 240px; 
+    height: 40px;
+    color: #8f8f8f;
+    border: 1px solid #e1e1e1;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.login-form > form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-form > form > input:nth-child(3) {
+    color: #fff;
+    text-decoration: none;
+    background-color: #303030;
+    cursor: pointer;
+    padding-right: 20px;
+    margin-top: 20px;
+}
+
+.register-section  {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.register-section  li {
+    position: relative;
+    display: inline;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.register-section a {
+    color: #8f8f8f;
+}
+
