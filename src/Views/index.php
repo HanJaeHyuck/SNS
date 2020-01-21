@@ -46,7 +46,7 @@
     <footer>
 
     </footer>
-    <script src="/css/jquery-sakura.js"></script>
+    <script src="/js/jquery-sakura.js"></script>
     <script tyoe="text/javascript">
         $(window).load(function () {
             $('body').sakura();

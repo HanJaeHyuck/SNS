@@ -15,6 +15,10 @@ Route::POST("/register", "UserController@registerProcess");
 //아이디 비밀번호 찾기 이동
 Route::GET("/find", "UserController@find");
 
+//에러 페이지 이동
+Route::GET("/error", "MainController@error");
+
+
 Route::init();
 ?>
 

@@ -22,25 +22,9 @@
             <div class="text">이름</div>
             <input type="text" name="username">
             <div class="text">생년월일</div>
-            <input type="text" placeholder="년(4자)" class="birth" name="year">
-            <select name="month" id="asd">
-                <option value="">월</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-            </select>
-            <input type="text" placeholder="일" class="birth" name="day">
+            <input type="text" placeholder="8자">
             <div class="text">성별</div>
-            <select name="gender" id="gender">
+            <select name="gender" id="gender">  
                 <option value="">성별</option>
                 <option value="man">남자</option>
                 <option value="female">여자</option>
@@ -48,6 +32,16 @@
             <input type="submit" value="가입하기" class="join">
         </form>
     </div>
+    <footer>
+        <ul>
+            <li>서비스 이용약관</li>
+            <li>개인정보처리방침</li>
+            <li>청소년보호정책</li>
+            <li>광고문의</li>
+            <li>고객센터</li>
+        </ul>
+        <p>Copyright © </p>
+    </footer>
 </body>
 
 </html>
