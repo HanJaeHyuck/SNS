@@ -14,17 +14,17 @@
         <div class="error">
             <div class="error-left">
             <h1>404</h1>
-            <p>PAGE NOT FOUND</p>
-            <a href="/">BACK</a>
+            <p>Error - Page Not Found</p>
+            <button id="back">BACK</button>
             </div>
             <div class="error-right">
                 <div class="error-img"></div>
             </div>
-            
         </div>
-
     </div>
-
+    <script>
+		document.querySelector("#back").addEventListener("click", e=> history.back());
+    </script>
 </body>
 
 </html>

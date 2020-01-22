@@ -19,6 +19,10 @@ Route::GET("/find", "UserController@find");
 Route::GET("/error", "MainController@error");
 
 
+//뷰 페이지 이동
+Route::GET("/view", "ViewController@view");
+
+
 Route::init();
 ?>
 

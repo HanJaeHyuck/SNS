@@ -16,27 +16,29 @@ class UserController {
         $password = $_POST['password'];
         $passwordc = $_POST['passwordc'];
         $username = $_POST['username'];
-        $year = $_POST['year'];
-        $month = $_POST['month'];
-        $day = $_POST['day'];
-        $gender = $_POST['gender'];
+        $date = $_POST['date'];
+        $gender = $_POST['gender']; 
+        
+        $condition = " A-Za-z0-9!#$%^&*()ㄱ-ㅎㅏ-ㅣ가-힣";
 
-        if($userid == "" || $password == "" || $passwordc == "" || $username == "" || $year == "" || $month == "" || $day == "" || $gender == "") {
+        if($userid == "" || $password == "" || $passwordc == "" || $username == ""  || $gender == "" || $date == "" || $gender == "") {
             back("필수값은 공백이 될 수 없습니다.");
         }
 
+        if(!preg_match("/^[$condition]([\-.\w]*[$condition])*@([0-9a-zA-Z][\-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9}$/", $userid)){
+            back("아이디의 규정을 지켜주세용");            
+        }
         if($password != $passwordc) {
             back("비밀번와 비밀번호 재확인이 다릅니다.");
         }
 
-        // if( 0 < (int)$year < 2020  ||  1 <(int)$day < 32) {
-        //     back("생년월일을 똑바로 입력 해주시기 바랍니다.");
-        // }
+        if(!preg_match("/^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/", $date)) {
+            back("올바른 생년월일을 입력 해주세요.");
+        }
 
-        $sql = "INSERT INTO sns_users (`id`, `password`, `name`, `level`) VALUES (?, PASSWORD(?), ?, ?)";
-        $reslut = DB::execute($sql, [$userid, $password, $username, 1]);
-
-        if($reslut != 1) {
+        $sql = "INSERT INTO sns_users (`id`, `password`, `name`, `date of birth`, `gender`, `level`) VALUES (?, PASSWORD(?), ?, ?, ?, ?)";
+        $reslut = DB::execute($sql, [$userid, $password, $username, $date, $gender, 1]);
+        if(!$reslut) {
             back("DB에 값이 올바르게 들어가지 않았습니다.");
         }
 
@@ -56,7 +58,7 @@ class UserController {
         }
 
         $_SESSION['user'] = $user;
-        return move("/", "로그인 완료!!");
+        return move("/view", "로그인 완료!!");
     }
 
     public function find() {

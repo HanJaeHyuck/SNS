@@ -22,12 +22,12 @@
             <div class="text">이름</div>
             <input type="text" name="username">
             <div class="text">생년월일</div>
-            <input type="text" placeholder="8자">
+            <input type="text" placeholder="8자" name="date">
             <div class="text">성별</div>
             <select name="gender" id="gender">  
                 <option value="">성별</option>
-                <option value="man">남자</option>
-                <option value="female">여자</option>
+                <option value="1">남자</option>
+                <option value="2">여자</option>
             </select>
             <input type="submit" value="가입하기" class="join">
         </form>
@@ -40,7 +40,7 @@
             <li>광고문의</li>
             <li>고객센터</li>
         </ul>
-        <p>Copyright © </p>
+        <p>Copyright © <a href="/main "></a></p>
     </footer>
 </body>
 
