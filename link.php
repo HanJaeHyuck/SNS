@@ -18,6 +18,8 @@ Route::GET("/find", "UserController@find");
 //에러 페이지 이동
 Route::GET("/error", "MainController@error");
 
+Route::GET("/user/logout", "UserController@logout");
+
 
 //뷰 페이지 이동
 Route::GET("/view", "ViewController@view");

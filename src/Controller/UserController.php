@@ -61,7 +61,14 @@ class UserController {
         return move("/view", "로그인 완료!!");
     }
 
-    public function find() {
+    public function find() 
+    {
         return view("find");
+    }
+
+    public function logout()
+    {
+        unset($_SESSION['user']);
+        back("로그아웃 완료");
     }
 }
