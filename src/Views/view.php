@@ -10,13 +10,13 @@
     <link rel="stylesheet" href="/css/themify-icons.css">
 </head>
 
-<body>
+<body>   
     <header>
         <div class="logo">
         </div>
 
         <ul class="header-bar">
-            <li><a href="">타임라인</a></li>
+            <li><a href="">타임라인</a></li>    
             <li><a href="">마이페이지</a></li>
             <li class="input-bar"><input type="text" placeholder="친구, 태그, 장소 검색"><span class="ti-search"></span></li>
             <li><img src="/images/error.jpg" alt="3"></li>
@@ -28,10 +28,11 @@
             <?php else : ?>
                 <a class="login-btn" href="/user/login">로그인</a>
             <?php endif; ?>
-            
         </div>
     </header>
-
+    <div class="timeline">
+        
+    </div>
 </body>
 
 </html>

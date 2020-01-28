@@ -11,7 +11,7 @@ a {
 }
 
 
-
+ 
 ul, li {
     list-style: none;
 }
@@ -34,7 +34,7 @@ header{
     border-bottom: solid 1px #ebebeb;
 }
 
-.header-bar {
+.header-bar {   
     width: 700px;
     height: 100%;
     display: flex;
