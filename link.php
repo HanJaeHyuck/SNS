@@ -24,6 +24,8 @@ Route::GET("/user/logout", "UserController@logout");
 //뷰 페이지 이동
 Route::GET("/view", "ViewController@view");
 
+Route::GET("/write", "TodoController@write");
+
 
 Route::init();
 ?>

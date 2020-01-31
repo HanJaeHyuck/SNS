@@ -22,11 +22,11 @@
             <li><img src="/images/error.jpg" alt="3"></li>
         </ul>
         <div class="header-right">
-            <a href="/"><img src="/images/write.gif" alt="write"></a>
+            <a href="/write"><img src="/images/write.gif" alt="write"></a>
             <?php if(isset($_SESSION['user'])) : ?>
                 <a class="login-btn" href="/user/logout">로그아웃</a>
             <?php else : ?>
-                <a class="login-btn" href="/user/login">로그인</a>
+                <a class="login-btn" href="/user/login">로그인</a>  
             <?php endif; ?>
         </div>
     </header>
