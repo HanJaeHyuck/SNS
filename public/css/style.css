@@ -10,6 +10,10 @@ a {
     color: #8f8f8f;
 }
 
+body {
+    background-color: #fafafa;
+}
+
 
  
 ul, li {
@@ -32,10 +36,13 @@ header{
     align-items: center;
     color: #121212;
     border-bottom: solid 1px #ebebeb;
+    z-index: 99;
+    background-color: #fff;
+    top: 0;
 }
 
 .header-bar {   
-    width: 850px;
+    width: 700px;
     height: 100%;
     display: flex;
     justify-content: space-between;
@@ -135,9 +142,146 @@ header{
 
 #title {
     width: 100%;
-    height: 50px;
+    height: 60px;
     margin-top: 30px;
-    
+    margin-bottom: 30px;
+    border: 1px solid #ebebeb;
+    padding-left: 10px;
+    font-size: 25px;
+}
+
+#title::placeholder {
+    color: #8f8f8f;
+    font-weight: 500;
+}
+
+.submit {
+    width: 75px;
+    height: 38px;
+    background-color: #474747;
+    font-size: 15px;
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+}
+
+.cancle {
+    width: 75px;
+    height: 38px;
+    background-color: #8f8f8f;
+    font-size: 15px;
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    margin-left: 10px;
+}
+
+.write-btn {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 /* write css end  */
+
+
+/* view css start*/
+.view {
+    width: 700px;
+    margin: 0 auto;
+    margin-top: 100px;
+    z-index: -100;
+    background-color: #fff;
+}
+
+.view-top {
+    margin-left: 30px;
+    height: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+.view-img > img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.view-top-text > h3 {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.view-top-text > p {
+    font-size: 12px;
+    color: #8f8f8f;
+}
+
+.view > h2 {
+    margin-left: 30px;
+    font-weight: 400;
+    color: #202020;
+    font-size: 19px;
+    margin-bottom: 20px;
+}
+
+.view > p {
+    margin-left: 30px;
+    font-size: 16px;
+    color: #202020;
+}
+
+.view > img {
+    margin-top: 30px;
+    margin-left: 15px;
+    max-width: 670px;
+    max-height: 650px;
+}
+
+.view-form {
+    margin-left: 30px;
+}
+
+.view-form > span {
+    margin-right: 15px;
+    width: 50px;
+    height: 50px;
+}
+
+.view-form > p {
+    margin: 5px 0;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.view-comment {
+    width: 100%;
+    border-top: 1px solid #efefef;
+    padding-top: 5px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.view-comment > input {
+    border: none;
+}
+
+#comment {
+    margin-left: 10px;
+    width: 650px;
+}
+
+#comment-btn {
+    
+}
+
+
+
+
+
+/* view css end */

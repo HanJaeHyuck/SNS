@@ -16,8 +16,8 @@
         <div class="logo">
         </div>
         <ul class="header-bar">
-            <li><a href="">타임라인</a></li>
-            <li><a href="">마이페이지</a></li>
+            <li><a href="/view">타임라인</a></li>
+            <li><a href="/mypage">마이페이지</a></li>
             <li class="input-bar"><input type="text" placeholder="친구, 태그, 장소 검색"><a href=""><span class="ti-search"></span></a></li>
             <li><img src="/images/error.jpg" alt="3"></li>
         </ul>
@@ -32,20 +32,26 @@
     </header>
     <div class="write">
         <h2>글쓰기</h2>
-        <form method="post">
+        <form method="post" action="/write">
             <input type="hidden" />
             <div class="form-group">
-                <input type="text" class="form-control" id="title" placeholder="<?=$_SESSION['user']->name ?>의 소중한 일상">
-                
+                <input type="text" class="form-control" id="title" name="title" placeholder="<?= $_SESSION['user']->name ?>의 소중한 일상">
             </div>
             <div class="form-group">
-                <textarea class="form-control" id="content" placeholder="글 내용을 입력하세요"></textarea>
+                <textarea class="form-control" id="content" placeholder="글 내용을 입력하세요" name="content"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">글작성</button>
+            <div class="write-btn">
+                <input type="submit" class="submit" value="저장">
+                <input type="button" class="cancle" value="취소">   
+            </div>
+
         </form>
     </div>
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/4/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="/js/app.js"></script>
+    <script>
+        document.querySelector(".cancle").addEventListener("click", e => history.back());
+    </script>
 </body>
 
 </html>
