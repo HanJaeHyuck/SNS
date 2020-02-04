@@ -8,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/themify-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -30,30 +31,41 @@
             <?php endif; ?>
         </div>
     </header>
-    <div class="view">
-        <div class="view-top">
-            <div class="view-img"><img src="/images/error.jpg" alt="기본 이미지"></div>
-            <div class="view-top-text">
-                <h3>한재혁</h3>
-                <p>2020.02.03 09:38</p>
+
+    <?php foreach ($list as $item) : ?>
+        <div class="view">
+            <div class="view-top">
+                <div class="view-img"><img src="/images/error.jpg" alt="기본 이미지"></div>
+                <div class="view-top-text">
+                    <h3><?= $item->writer ?></h3>
+                    <p><?= $item->date ?></p>
+                </div>
+            </div>
+            <h2><?= $item->title ?></h2>
+            <p><?= $item->content ?></p>
+            <!-- <img src="/images/error.jpg" alt="기본이미지"> -->
+            <div class="view-form">
+                <span class="ti-heart"></span>
+                <span class="ti-comment"></span>
+                <p>좋아요 64,716개</p>
+            </div>
+            <div class="comment-box">
+            <?php if(!empty($comment)) : ?>
+                <?php foreach ($item->comments as $comment2) : ?>
+                    <div class="comment-form">
+                        <p class="comment-writer"><?= $comment2->writer ?></p>
+                        <p class="comment-text"><?= $comment2->content ?></p>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            </div>
+            <div  class="view-comment">
+                <input type="text" placeholder="댓글 달기.." class="comment">
+                <button class="comment-btn" data-id="<?= $item->board_idx ?>" data-username="<?= $_SESSION['user']->name?>">게시</button>
             </div>
         </div>
-        <h2>2020년 1월 13일</h2>
-        <p>asdasdsad</p>
-        <img src="/images/error.jpg" alt="기본이미지">
-        <div class="view-form">
-            <span class="ti-heart"></span>
-            <span class="ti-comment"></span>
-            <p>좋아요 64,716개</p>
-        </div>
-        <form action="post" action="/comment" class="view-comment">
-            <input type="text" placeholder="댓글 달기.." name="comment" id="comment">
-            <input type="submit" value="게시" id="comment-btn">
-        </form>
-        <?php foreach ($list as $item) : ?>
-
-        <?php endforeach; ?>
-    </div>
+    <?php endforeach;?>
+    <script src="/js/ajax.js"></script>
 </body>
 
 </html>

@@ -20,35 +20,50 @@ class MainController {
         $prev = false;
         $next = false;
         $page = 0;
-        if(isset($_SESSION['user'])) {
-            $user = $_SESSION['user'];
+        $comment = [];
+            // $user = $_SESSION['user'];
             $page = isset($_GET['p']) && is_numeric($_GET['p']) ? $_GET['p'] : 1;
             $start = ($page - 1) * 5; 
             $sql = "SELECT * FROM sns_boards"; //LIMIT 기본 정렬은 asc 오름차순인데 0개서 부터 5개 가져온다.
-            $list = DB::fetchAll($sql, [$_SESSION['user']->id]);
+            $list = DB::fetchAll($sql);
+            
+            // $sql = "SELECT * FROM sns_comments";
+            // $comment = DB::fetchAll($sql);
 
-            $sql = "SELECT count(*) AS cnt FROM sns_boards WHERE writer = ? AND date >= NOW()";
-
-            $cnt = DB::fetch($sql, [$user->id]);
-            $cnt = $cnt->cnt;
-
-            if(ceil($cnt / 5) > $page) {
-                $next = true;
+            foreach($list as $board) {
+                $sql = "SELECT * FROM sns_comments WHERE bidx = ?";
+                $comment_list = DB::fetchAll($sql, [$board->board_idx]);
+                $board->comments = $comment;
             }
-            if($page != 1) {
-                $prev = true;
-            }
-        }
 
-		return view("view", ['list' => $list, 'cnt' => $cnt, 'prev' => $prev, 'next' => $next, 'p' => $page]);
+            
+            // $sql = "SELECT count(*) AS cnt FROM sns_boards WHERE writer = ? AND date >= NOW()";
+
+            // $cnt = DB::fetch($sql);
+            // $cnt = $cnt->cnt;
+
+            // if(ceil($cnt / 5) > $page) {
+            //     $next = true;
+            // }
+            // if($page != 1) {
+            //     $prev = true;
+            // }
+        
+
+		return view("view", ['list' => $list, 'cnt' => $cnt, 'prev' => $prev, 'next' => $next, 'p' => $page, 'comment' =>$comment_list]);
 	}
 	
 	function write() 
     {
-        return view("write");
+        if(!isset($_SESSION['user'])){
+            move("/","로그인을 먼저 해주세요.");
+        } else {
+            view("write");
+        }
 	}
 	
-	public function register() {
+    public function register() 
+    {
 		
         return view("register");
     }
@@ -118,7 +133,8 @@ class MainController {
 	public function writeProcess()
 	{
 		$title = $_POST['title'];
-		$content = $_POST['content'];
+        $content = $_POST['content'];
+        
 
 		if($title == "" || $content == "") {
 			back("제목과 내용은 공백이 될 수 없습니다.");
@@ -134,8 +150,33 @@ class MainController {
 			
 		} else {
 			move("/view", "성공적으로 글 작성");
-		}
-	}
+        }
+    }
+    
+    public function commentProcess()
+    {
+        $user = $_SESSION['user'];
+        $user_idx = $user->idx;
+        $board_idx = $_POST['board_id'];
+        $content = $_POST['comment'];
+        $writer = $user->name;   
+        echo "<script>console.log(123123);</script>";
+
+        if(!isset($_SESSION['user'])) {
+            move("/", "로그인을 하고 이용해 주세요.");
+        }
+        if($content == "") {
+            back("댓글의 내용은 공백이 될 수 없습니다.");
+        }
+
+
+        $sql = "INSERT INTO sns_comments (`uidx`, `bidx`, `content`,`writer`, `date`) VALUES(?, ?, ?, ?,now())";
+        $reslut = DB::execute($sql, [$user_idx, $board_idx, $content, $writer]);
+
+        if(!$reslut) {
+            back("데이터베이스 입력중 오류 발생");
+        }
+    }
 
 	
 

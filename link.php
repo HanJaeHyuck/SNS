@@ -30,6 +30,9 @@ Route::GET("/write", "MainController@write");
 //글쓰기 
 Route::POST("/write", "MainController@writeProcess");
 
+//댓글쓰기
+Route::POST("/comment", "MainController@commentProcess");
+
 
 Route::init();
 ?>

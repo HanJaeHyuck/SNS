@@ -242,13 +242,13 @@ header{
 }
 
 .view-form {
+    margin-top: 4px;
     margin-left: 30px;
 }
 
 .view-form > span {
     margin-right: 15px;
-    width: 50px;
-    height: 50px;
+    font-size: 25px;
 }
 
 .view-form > p {
@@ -271,13 +271,39 @@ header{
     border: none;
 }
 
-#comment {
-    margin-left: 10px;
+.comment {
+    margin-left: 30px;
     width: 650px;
 }
 
-#comment-btn {
-    
+.comment-btn {
+    color: #fa6c11;
+    border: none;
+    background-color: #fff;
+    margin-right: 15px;
+}
+
+.comment-box {
+    margin-bottom: 20px;
+}
+
+.comment-form {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: 30px;
+}
+
+.comment-writer {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #262626;
+    font-size: 14px;
+}
+
+.comment-text {
+    font-size: 14px;
 }
 
 
