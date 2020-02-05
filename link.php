@@ -33,6 +33,12 @@ Route::POST("/write", "MainController@writeProcess");
 //댓글쓰기
 Route::POST("/comment", "MainController@commentProcess");
 
+//좋아요 누르기
+Route::POST('/like', "MainController@likeProcess");
+
+//게시물 삭제
+Route::GET('/delete', "MainController@deleteProcess");
+
 
 Route::init();
 ?>

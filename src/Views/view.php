@@ -40,29 +40,34 @@
                     <h3><?= $item->writer ?></h3>
                     <p><?= $item->date ?></p>
                 </div>
+                <!-- <span class="ti-more-alt"></span> -->
+                <?php if($_SESSION['user']->name == $item->writer) :?>
+                <a class="modefiy">수정</a>
+                <a class="delete" href="/delete?id=<?= $item->board_idx ?>">삭제</a>
+                <?php endif; ?>
             </div>
             <h2><?= $item->title ?></h2>
             <p><?= $item->content ?></p>
             <!-- <img src="/images/error.jpg" alt="기본이미지"> -->
             <div class="view-form">
-                <span class="ti-heart"></span>
+                <button class="like_btn" data-like="<?= $item->likes ?>" data-id="<?= $item->board_idx ?>"><span class="ti-heart"></span></button>                
                 <span class="ti-comment"></span>
-                <p>좋아요 64,716개</p>
+                <p class="like_count">좋아요 <?= $item->likes ?>개</p>
             </div>
             <div class="comment-box">
-            <?php if(!empty($comment)) : ?>
                 <?php foreach ($item->comments as $comment2) : ?>
                     <div class="comment-form">
                         <p class="comment-writer"><?= $comment2->writer ?></p>
                         <p class="comment-text"><?= $comment2->content ?></p>
                     </div>
                 <?php endforeach; ?>
-            <?php endif; ?>
             </div>
+            <?php if(isset($_SESSION['user'])) : ?>
             <div  class="view-comment">
                 <input type="text" placeholder="댓글 달기.." class="comment">
                 <button class="comment-btn" data-id="<?= $item->board_idx ?>" data-username="<?= $_SESSION['user']->name?>">게시</button>
             </div>
+            <?php endif; ?>
         </div>
     <?php endforeach;?>
     <script src="/js/ajax.js"></script>
