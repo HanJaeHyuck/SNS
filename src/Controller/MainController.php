@@ -121,6 +121,11 @@ class MainController {
         return move("/view", "로그인 완료!!");
     }
 
+    public function mypage()
+    {
+        return view("mypage");
+    }
+
     public function find() 
     {
         return view("find");
@@ -129,7 +134,7 @@ class MainController {
     public function logout()
     {
         unset($_SESSION['user']);
-        back("로그아웃 완료");
+        move("/", "로그아웃 완료");
 	}
 
 	public function writeProcess()
@@ -185,15 +190,16 @@ class MainController {
         $user_idx = $user->idx;
         $board_idx = $_POST['board_id'];
 
-        if(isset($user)) {
+        if(!isset($user)) {
             return;
         }
 
         // move("/", "123213213");
 
-        // if(DB::fetch("SELECT * FROM sns_likes WHERE uidx = ?, bidx = ?", [$user_idx, $board_idx])) {
-        //     back("이미 좋아요를 누르셧습니다.");
-        // }
+        if(DB::fetch("SELECT * FROM sns_likes WHERE uidx = ? and bidx = ?", [$user_idx, $board_idx])) {
+            back("이미 좋아요를 누르셧습니다");
+            return;
+        }
     
         $sql = "INSERT INTO sns_likes(`uidx`, `bidx`) VALUES(?, ?)";
         $result = DB::execute($sql, [$user_idx, $board_idx]);
@@ -232,7 +238,30 @@ class MainController {
         // $result = DB
     }
 
-	
+    public function modify()
+    {
+        $id = $_GET['id'];
 
+        $sql = "SELECT * FROM sns_boards WHERE board_idx = ?";
+        $result = DB::fetch($sql, [$id]);
+
+        view("/modify",  ['list' => $result]);
+    }
+
+    public function modifyProcess()
+    {
+        $idx = $_POST['idx'];
+        $title = $_POST['title'];
+        $content = $_POST['content'];
+
+        $sql = "UPDATE sns_boards SET title = ? , content = ? WHERE board_idx = ?";
+        $result = DB::execute($sql, [$title, $content, $idx]);
+
+        if(!$result) {
+            back("데이터베이서 입력중 오류 발생");
+        } else {
+            move("/view", "성공적으로 글 수정 완료");
+        }
+    }
 }
 ?>

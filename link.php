@@ -12,6 +12,8 @@ Route::GET("/register", "MainController@register");
 //회원가입 하기
 Route::POST("/register", "MainController@registerProcess");
 
+Route::GET("/mypage", "MainController@mypage");
+
 //아이디 비밀번호 찾기 이동
 Route::GET("/find", "MainController@find");
 
@@ -38,6 +40,12 @@ Route::POST('/like', "MainController@likeProcess");
 
 //게시물 삭제
 Route::GET('/delete', "MainController@deleteProcess");
+
+//수정페이지 이동
+Route::GET('/modify' , "MainController@modify");
+
+//게시물 수정
+Route::POST('/modify' , "MainController@modifyProcess");
 
 
 Route::init();

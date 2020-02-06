@@ -24,7 +24,6 @@ $(document).on("click", ".comment-btn", function(e) {
 
 $(document).on("click", ".like_btn", function (e) {
     let like = $(e.currentTarget).siblings(".like_count").val();
-    console.log(like);
     let like_cnt = $(e.currentTarget).data("like");
     let board_id = $(e.currentTarget).data("id");
     $.ajax({ 

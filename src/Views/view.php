@@ -42,7 +42,7 @@
                 </div>
                 <!-- <span class="ti-more-alt"></span> -->
                 <?php if($_SESSION['user']->name == $item->writer) :?>
-                <a class="modefiy">수정</a>
+                <a class="modify" href="/modify?id=<?= $item->board_idx ?>">수정</a>
                 <a class="delete" href="/delete?id=<?= $item->board_idx ?>">삭제</a>
                 <?php endif; ?>
             </div>
