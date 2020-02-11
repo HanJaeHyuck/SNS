@@ -32,7 +32,9 @@
         </div>
     </header>
     <div class="my-view">
-        <div class="profile"></div>
+        <div class="profile">
+                <div class="profile-img"></div>
+        </div>
     </div>
 </body>
 

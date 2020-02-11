@@ -37,15 +37,18 @@
             <div class="form-group">
                 <input type="text" class="form-control" id="title" name="title" placeholder="<?= $_SESSION['user']->name ?>의 소중한 일상">
             </div>
-            <div class="form-group">
+            <div class="drop-box">
                 <textarea class="form-control" id="content" placeholder="글 내용을 입력하세요" name="content"></textarea>
+                <div class="drop-list">
+                </div>
             </div>
+            
             <div class="write-btn">
                 <input type="submit" class="submit" value="저장">
-                <input type="button" class="cancle" value="취소">   
+                <input type="button" class="cancle" value="취소">
             </div>
-
         </form>
+
     </div>
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/4/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="/js/app.js"></script>

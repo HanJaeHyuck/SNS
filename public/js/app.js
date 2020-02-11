@@ -1,66 +1,79 @@
-window.onload = function(){
-	tinymce.init({
-		selector:"textarea",
-		plugins: 'advlist autolink link image lists' 
-			+ ' charmap print preview  emoticons'
-			+ ' textcolor',
-		toolbar:[
-			'undo redo | styleselect | bold italic'
-			+ ' | link imageupload  |'
-			+ ' alignleft aligncenter alignright |'
-			+ ' forecolor backcolor emoticons'
-		],
-		height:300,
-		menubar:false,
-		setup:function(editor){
-			let inp = $(
-					`<input id="tinymce-uploader" 
-						type="file" name="pic" 
-						accept="image/*" 
-						style="display:none;">`);
-			$(editor.getElement()).parent().append(inp);
-			
-			editor.addButton('imageupload', {
-				icon:'image',
-				onclick:function(e){
-					inp.trigger('click');
-				}
-			});
-			
-			inp.on("change", (e)=>{
-				uploadFile(e.target, editor);
-			});
-			
-			function uploadFile(input, editor){
-				let data = new FormData();
-				data.append("file", input.files[0]);
-				
-				$.ajax({
-					url: '/board/upload',
-					type: 'post',
-					data: data,
-					enctype: 'multipart/form-data',
-					dataType: 'json',
-					processData: false,
-					//프로세스 데이터를 안하면 서버로 보낼때 Parameter로 보내게 된다.
-					contentType:false, 
-					//꺼주면 제이쿼리가 자동으로 판단해서 파일전송으로 처리한다.
-					success:(data) => {
-						editor.insertContent(
-							`<img class='content-img' 
-								src='${data.uploadImage}' 
-								data-mce-src='${data.uploadImage}'/>`);
-					},
-					error: (jqXHR, textStatus, errorThrown) => {
-						console.log(jqXHR);
-						if(jqXHR.responseJSON){
-							let data = jqXHR.responseJSON;
-							alert(`이미지 업로드 오류 ${data.msg}`);
-						}
-					}
-				});
-				
-			}
-		}
-	});
-}
+// http://jsfiddle.net/zfnj5rv4/
+window.addEventListener("load", ()=>{
+    const dropZone = document.querySelector(".drop-box");
+    const dropList = document.querySelector(".drop-list");
+
+    dropZone.addEventListener("dragover", e => {
+        e.preventDefault();
+    });
+
+    dropZone.addEventListener("drop", e => {
+        e.preventDefault();
+        const files = Array.from(e.dataTransfer.files);
+        
+        loadThumbnail(files);
+    });
+    
+
+    function loadThumbnail(files){
+        files.forEach(async x => {
+            let img = await loadFile(x);
+            dropList.appendChild(img);
+
+            let formData = new FormData();
+            formData.append("file", x);
+            $.ajax({
+                url:"/upload.php",
+                method:"post",
+                processData:false,
+                contentType: false,
+                data:formData,
+                success:(json) => {
+                    console.log(json);
+                }
+            });
+        });
+    }
+    
+    function loadFile(file){
+        return new Promise( (res, rej)=>{
+            let reader = new FileReader();
+
+            reader.addEventListener("load", ()=>{
+                let img = new Image();
+                img.src = reader.result;
+                img.addEventListener("load", ()=>{
+                    let canvas = document.createElement("canvas"); //이미지 리사이징
+                    canvas.width = 100;
+                    canvas.height = 100;
+                    let ctx = canvas.getContext("2d");
+                    ctx.drawImage(img, 0, 0, 100, 100); 
+                    let url = canvas.toDataURL();
+
+                    let thumbImg = new Image();
+                    thumbImg.src = url;
+                    res(thumbImg);
+                });
+            });
+            reader.readAsDataURL(file);
+        });
+    }
+});
+
+
+// files.forEach(x => {
+    //     let reader = new FileReader();
+
+    //     reader.addEventListener("load", () => {
+    //         let img = new Image();
+    //         img.src = reader.result;
+    //         img.addEventListener("load", () => {
+    //             dropList.appendChild(img);
+    //         });
+    //     });
+
+    //     reader.readAsDataURL(x); //이미지 파일을 읽을때 이렇게 읽는다.
+    //     // reader.readAsTex() //파일을 읽을때 사용
+    // });
+
+
